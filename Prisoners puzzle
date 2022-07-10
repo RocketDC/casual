@@ -1,0 +1,60 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+public class Node {
+
+
+
+
+    public static void main(String[] args) {
+        Map<Integer, Integer> boxes = assignBoxs(100);
+        boolean a = false;
+        for (int i = 1; i < 101; i++) {
+           boolean found = checkBox(boxes, 50, i,i , 0);
+           if(!found)break;
+           if (i ==100)a =true;
+        }
+        if(a) System.out.println("Prisoners Live");
+        else System.out.println("Prisoners Die");
+
+
+    }
+    public static Map<Integer, Integer> assignBoxs( int size){
+        Map<Integer, Integer> boxes = new HashMap<>();
+        Random rnd = new Random();
+
+        for (int i = 1; i < size+1; i++) {
+
+            while (true){
+                int value = 1 +rnd.nextInt(100);
+                if(!boxes.containsValue(value)){
+                    boxes.put(i, value);
+                    break;
+                }
+
+            }
+
+        }
+
+        return boxes;
+
+    }
+    public static boolean checkBox(Map<Integer, Integer> boxes,int limit, int next, int num, int count)  {
+        if (limit==0) {
+
+            //System.out.println("---->count is "+ count);
+            return false;}
+        if(boxes.get(next) == num){
+            //System.out.println(boxes.get(next)+ "     "+ num);
+            //System.out.println("--->Found it");
+            //System.out.println("---->count is "+ count);
+            return true;
+
+        }
+       // System.out.println(boxes.get(next)+ "     "+ num);
+        return checkBox(boxes, limit-1, boxes.get(next),num , count+1);
+
+    }
+
+}
