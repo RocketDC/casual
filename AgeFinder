@@ -1,0 +1,28 @@
+import java.time.LocalDate;
+
+public class AgeFinder {
+
+    public int getAge(LocalDate dateOfBirth)
+    {
+        LocalDate today = LocalDate.now();
+        return today.compareTo(dateOfBirth);
+    }
+
+    public LocalDate getDateAfterNdays(int noOfDays){
+        LocalDate today = LocalDate.now();
+        return today.plusDays(noOfDays);
+    }
+    public LocalDate getDateAfterXYearYMonthZDays(int year, int month, int day){
+        LocalDate today = LocalDate.now();
+//        LocalDate afterday = today.plusDays(day);
+//        LocalDate afterMonth = afterday.plusMonths(month);
+//        LocalDate afterYear = afterMonth.plusYears(year);
+//        return afterYear;
+        return today.plusDays(day).plusMonths(month).plusYears(year);
+    }
+
+    public static void main(String[] args) {
+        
+
+    }
+}
